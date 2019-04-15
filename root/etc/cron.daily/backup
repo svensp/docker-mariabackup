@@ -1,0 +1,30 @@
+#!/bin/sh
+
+sunday_fullbackup() {
+	mysql_backup_cron FULL
+	exit $?
+}
+
+weekday_incremental() {
+	mysql_backup_cron INCREMENTAL
+	exit $?
+}
+
+weekday_no_ancestor_fallback() {
+	mysql_backup_cron FULL
+	exit $?
+}
+
+SUNDAY="7"
+DAY_OF_WEEK="$(date +%u)"
+
+if [ "${DAY_OF_WEEK}" = "${SUNDAY}" ] ; then
+	sunday_fullbackup
+fi
+
+# Weekday
+if mysql_backup_cron HAS_YESTERDAY ; then
+	weekday_incremental
+fi
+
+weekday_no_ancestor_fallback()

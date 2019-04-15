@@ -1,5 +1,0 @@
-PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
-
-0 1 * * sun root mysql_backup_cron FULL > /dev/null
-0 1 * * sun root mysql_backup_cron DELETE > /dev/null
-0 1 * * mon-fri root mysql_backup_cron INCREMENTAL /dev/null

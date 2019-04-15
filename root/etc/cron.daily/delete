@@ -1,0 +1,3 @@
+#!/bin/sh
+
+mysql_backup_cron DELETE

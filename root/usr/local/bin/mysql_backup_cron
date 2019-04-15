@@ -4,6 +4,8 @@ help() {
 	echo "$0 MODE"
 	echo 
 	echo "MODE: "
+	echo "     - HAS_YESTERDAY Will return success if a backup from the previous"
+	echo "       day exists"
 	echo "     - FULL Create a full backup from today"
 	echo "     - INCREMENTAL Create an incremental backup based on yesterdays"
 	echo "                   backup"
@@ -36,6 +38,10 @@ case ${MODE} in
 		;;
 	DELETE)
 		mysql_backup DELETE "$(date --date="4 weeks ago" +"%Y-%m-%d")"
+		exit $?
+		;;
+	HAS_YESTERDAY)
+		mysql_backup LIST | grep $(date --date=yesterday +"%Y-%m-%d") > /dev/null
 		exit $?
 		;;
 esac
