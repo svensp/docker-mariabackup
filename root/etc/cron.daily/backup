@@ -27,4 +27,4 @@ if mysql_backup_cron HAS_YESTERDAY ; then
 	weekday_incremental
 fi
 
-weekday_no_ancestor_fallback()
+weekday_no_ancestor_fallback
