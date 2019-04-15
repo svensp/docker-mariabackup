@@ -1,2 +1,2 @@
-# docker-anacron-mariabackup
-Run mariabackup with anacron
+# docker-mariabackup
+Run mariabackup
